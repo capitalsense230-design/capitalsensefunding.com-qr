@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useRef, useMemo } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 
 export default function Home() {
@@ -8,6 +8,14 @@ export default function Home() {
     "https://www.capitalsensefunding.com/apply-online.php";
 
   const qrRef = useRef<HTMLDivElement>(null);
+
+  // Force absolute logo path for Vercel production
+  const logoSrc = useMemo(() => {
+    if (typeof window !== "undefined") {
+      return window.location.origin + "/logo.png";
+    }
+    return "/logo.png";
+  }, []);
 
   const downloadQR = () => {
     const canvas = qrRef.current?.querySelector("canvas");
@@ -36,14 +44,15 @@ export default function Home() {
           value={url}
           size={360}
           level="H"
-          includeMargin={true}
+          includeMargin
           fgColor="#000000"
           bgColor="#ffffff"
           imageSettings={{
-            src: "/logo.png",   // MUST match public/logo.png
-            height: 100,        // Larger logo
+            src: logoSrc,
+            height: 100,
             width: 100,
             excavate: true,
+            crossOrigin: "anonymous",
           }}
         />
       </div>
