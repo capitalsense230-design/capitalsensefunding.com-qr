@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 
-export default function Home(): JSX.Element {
+export default function Home(): {
   const [url, setUrl] = useState<string>(
     "https://capital-app-chi.vercel.app/CapitalSenseFunding"
   );
