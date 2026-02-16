@@ -34,16 +34,19 @@ export default function Home() {
       <div ref={qrRef} className="bg-white p-8 rounded-2xl shadow-xl">
         <QRCodeCanvas
           value={url}
-          size={350}            // Better for print
-          level="H"             // High error correction
+          size={360}
+          level="H"
           includeMargin
           fgColor="#000000"
           bgColor="#ffffff"
           imageSettings={{
             src: "/logo.png",
-            height: 75,
-            width: 75,
+            x: undefined,
+            y: undefined,
+            height: 85,
+            width: 85,
             excavate: true,
+            crossOrigin: "anonymous",
           }}
         />
       </div>
