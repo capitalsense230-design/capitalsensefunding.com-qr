@@ -3,7 +3,7 @@
 import { useState, useRef } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 
-export default function Home(): {
+export default function Home() {
   const [url, setUrl] = useState<string>(
     "https://capital-app-chi.vercel.app/CapitalSenseFunding"
   );
@@ -14,16 +14,15 @@ export default function Home(): {
     const canvas = qrRef.current?.querySelector("canvas");
     if (!canvas) return;
 
-    const url = canvas.toDataURL("image/png");
+    const image = canvas.toDataURL("image/png");
     const link = document.createElement("a");
-    link.href = url;
+    link.href = image;
     link.download = "capital-sense-qr.png";
     link.click();
   };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-6">
-      
       <h1 className="text-3xl font-bold mb-6 text-center">
         Capital Sense Funding QR Code
       </h1>
@@ -31,9 +30,7 @@ export default function Home(): {
       <input
         type="text"
         value={url}
-        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-          setUrl(e.target.value)
-        }
+        onChange={(e) => setUrl(e.target.value)}
         className="w-full max-w-xl p-3 border rounded mb-6"
       />
 
@@ -42,7 +39,7 @@ export default function Home(): {
           value={url}
           size={320}
           level="H"
-          includeMargin={true}
+          includeMargin
           fgColor="#000000"
           bgColor="#ffffff"
           imageSettings={{
