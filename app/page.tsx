@@ -1,12 +1,11 @@
 "use client";
 
-import { useState, useRef } from "react";
+import { useRef } from "react";
 import { QRCodeCanvas } from "qrcode.react";
 
 export default function Home() {
-  const [url, setUrl] = useState<string>(
-    "https://capital-app-chi.vercel.app/CapitalSenseFunding"
-  );
+  const url =
+    "https://www.capitalsensefunding.com/apply-online.php";
 
   const qrRef = useRef<HTMLDivElement>(null);
 
@@ -17,35 +16,33 @@ export default function Home() {
     const image = canvas.toDataURL("image/png");
     const link = document.createElement("a");
     link.href = image;
-    link.download = "capital-sense-qr.png";
+    link.download = "capital-sense-apply-qr.png";
     link.click();
   };
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-6">
+      
       <h1 className="text-3xl font-bold mb-6 text-center">
-        Capital Sense Funding QR Code
+        Capital Sense Funding
       </h1>
 
-      <input
-        type="text"
-        value={url}
-        onChange={(e) => setUrl(e.target.value)}
-        className="w-full max-w-xl p-3 border rounded mb-6"
-      />
+      <p className="text-lg mb-6 text-center">
+        Scan to Apply for Fast Business Capital
+      </p>
 
-      <div ref={qrRef} className="bg-white p-6 rounded-xl shadow-lg">
+      <div ref={qrRef} className="bg-white p-8 rounded-2xl shadow-xl">
         <QRCodeCanvas
           value={url}
-          size={320}
-          level="H"
+          size={350}            // Better for print
+          level="H"             // High error correction
           includeMargin
           fgColor="#000000"
           bgColor="#ffffff"
           imageSettings={{
             src: "/logo.png",
-            height: 65,
-            width: 65,
+            height: 75,
+            width: 75,
             excavate: true,
           }}
         />
@@ -53,13 +50,13 @@ export default function Home() {
 
       <button
         onClick={downloadQR}
-        className="mt-6 px-6 py-3 bg-black text-white rounded hover:bg-gray-800"
+        className="mt-8 px-6 py-3 bg-black text-white rounded-lg hover:bg-gray-800 transition"
       >
         Download QR Code
       </button>
 
-      <p className="mt-6 text-gray-600 text-center">
-        Scan to Apply for Fast Business Capital
+      <p className="mt-6 text-gray-500 text-sm text-center">
+        https://www.capitalsensefunding.com/apply-online.php
       </p>
     </main>
   );
