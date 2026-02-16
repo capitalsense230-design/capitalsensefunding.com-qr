@@ -36,17 +36,14 @@ export default function Home() {
           value={url}
           size={360}
           level="H"
-          includeMargin
+          includeMargin={true}
           fgColor="#000000"
           bgColor="#ffffff"
           imageSettings={{
-            src: "/logo.png",
-            x: undefined,
-            y: undefined,
-            height: 85,
-            width: 85,
+            src: "/logo.png",   // MUST match public/logo.png
+            height: 100,        // Larger logo
+            width: 100,
             excavate: true,
-            crossOrigin: "anonymous",
           }}
         />
       </div>
