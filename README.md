@@ -1,0 +1,1 @@
+# capitalsensefunding.com-qr
